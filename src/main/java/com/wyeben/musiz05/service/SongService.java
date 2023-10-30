@@ -45,7 +45,8 @@ public class SongService implements SongServices{
         return songRepository.findBySongTitleAndArtistName(songTitle, artistName);
     }
 
-    public List<Song> updateSongByArtistNameAndSongTitle(String artistName, String songTitle) {
-        return songRepository.updateByArtistNameAndSongTitle(artistName, songTitle);
+    public boolean updateSongByArtistNameAndSongTitle(String artistName, String songTitle, String newValue) {
+         int updatedCount = songRepository.updateByArtistNameAndSongTitle(artistName, songTitle, newValue);
+         return updatedCount > 0;
     }
 }
