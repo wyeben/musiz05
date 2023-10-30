@@ -33,7 +33,7 @@ public class SongService implements SongServices{
         song.setLastUpdate(request.getLastUpdate());
         songRepository.save(song);
         Response response = new Response();
-        response.setMessage("saved successfully");
+        response.setMessage("uploaded successfully");
         return response;
     }
 
@@ -43,5 +43,9 @@ public class SongService implements SongServices{
 
     public List<Song> getBySongTitleAndArtistName(String songTitle, String artistName) {
         return songRepository.findBySongTitleAndArtistName(songTitle, artistName);
+    }
+
+    public List<Song> updateSongByArtistNameAndSongTitle(String artistName, String songTitle) {
+        return songRepository.updateByArtistNameAndSongTitle(artistName, songTitle);
     }
 }

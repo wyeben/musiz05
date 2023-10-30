@@ -27,9 +27,15 @@ public class SongController {
     }
 
     @GetMapping("download/{songTitle}/{artistName}")
-    public List<Song> getBySongTitleAndArtistName(@PathVariable String songTitle, @PathVariable String artistName){
+    public List<Song> getBySongTitleAndArtistName(@PathVariable String songTitle,
+                                                  @PathVariable String artistName){
         return songService.getBySongTitleAndArtistName(songTitle, artistName);
     }
 
+    @PutMapping("update/{artistName}/{songTitle}")
+    public List<Song> updateSongByArtistNameAndSongTitle(@PathVariable String artistName,
+                                                         @PathVariable String songTitle){
+        return songService.updateSongByArtistNameAndSongTitle(artistName, songTitle);
+    }
 
 }
