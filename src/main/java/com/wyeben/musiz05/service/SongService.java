@@ -44,9 +44,14 @@ public class SongService implements SongServices{
     }
 
     @Transactional
-    public boolean updateSongByArtistNameAndSongTitle(String artistName, String songTitle, String newValue) {
+    public ResponseEntity<String> updateSongByArtistNameAndSongTitle(String artistName, String songTitle, String newValue) {
          int updatedCount = songRepository.updateByArtistNameAndSongTitle(artistName, songTitle, newValue);
-         return updatedCount > 0;
+
+         if(updatedCount > 0){
+             return ResponseEntity.ok("Song updated successfully");
+         }else {
+             return ResponseEntity.ok("Not found");
+         }
     }
 
     @Transactional

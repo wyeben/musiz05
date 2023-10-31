@@ -42,17 +42,13 @@ public class SongController {
     public ResponseEntity<String> updateSongByArtistNameAndSongTitle(@PathVariable String artistName,
                                                              @PathVariable String songTitle, @PathVariable
                                                                          String newValue){
-        boolean success = songService.updateSongByArtistNameAndSongTitle(artistName, songTitle, newValue);
+        return songService.updateSongByArtistNameAndSongTitle(artistName, songTitle, newValue);
 
-        if(success){
-            return ResponseEntity.ok("song updated successfully");
-        }else {
-            return ResponseEntity.notFound().build();
-        }
     }
 
     @DeleteMapping("delete/{artistName}/{songTitle}")
-    public ResponseEntity<String> deleteSongByArtistNameAndSongTitle(@PathVariable String artistName, @PathVariable String songTitle){
+    public ResponseEntity<String> deleteSongByArtistNameAndSongTitle(@PathVariable String artistName,
+                                                                     @PathVariable String songTitle){
         return songService.deleteSong(artistName, songTitle);
     }
 
