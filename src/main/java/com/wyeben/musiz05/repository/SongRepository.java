@@ -21,7 +21,7 @@ public interface SongRepository extends JpaRepository<Song, Integer> {
                                         @Param("songTitle") String songTitle,
                                         @Param("newValue") String newValue);
 
-    List<Song> deleteByArtistNameAndSongTitle(String artistName, String songTitle);
+    int deleteByArtistNameAndSongTitle(String artistName, String songTitle);
 }
 
 

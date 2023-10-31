@@ -6,6 +6,7 @@ import com.wyeben.musiz05.model.Song;
 import com.wyeben.musiz05.repository.SongRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,7 +50,13 @@ public class SongService implements SongServices{
     }
 
     @Transactional
-    public List<Song> deleteSong(String artistName, String songTitle) {
-        return songRepository.deleteByArtistNameAndSongTitle(artistName, songTitle);
+    public ResponseEntity<String> deleteSong(String artistName, String songTitle) {
+        int successful = songRepository.deleteByArtistNameAndSongTitle(artistName, songTitle);
+
+        if(successful > 0) {
+            return ResponseEntity.ok("Song deleted successfully");
+        }else {
+            return ResponseEntity.ok("Song not found");
+        }
     }
 }
