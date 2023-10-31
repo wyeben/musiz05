@@ -25,10 +25,6 @@ public class SongService implements SongServices{
     }
 
 
-    public void saveSong(Request request){
-
-    }
-
     @Override
     public Response registerArtiste(Request request) {
         Song song = new Song();
@@ -41,9 +37,6 @@ public class SongService implements SongServices{
         return response;
     }
 
-    public Song downloadSongBySongTitleAndArtistName(Request request){
-        return null;
-    }
 
     public List<Song> getBySongTitleAndArtistName(String songTitle, String artistName) {
         return songRepository.findBySongTitleAndArtistName(songTitle, artistName);
@@ -53,5 +46,10 @@ public class SongService implements SongServices{
     public boolean updateSongByArtistNameAndSongTitle(String artistName, String songTitle, String newValue) {
          int updatedCount = songRepository.updateByArtistNameAndSongTitle(artistName, songTitle, newValue);
          return updatedCount > 0;
+    }
+
+    @Transactional
+    public List<Song> deleteSong(String artistName, String songTitle) {
+        return songRepository.deleteByArtistNameAndSongTitle(artistName, songTitle);
     }
 }

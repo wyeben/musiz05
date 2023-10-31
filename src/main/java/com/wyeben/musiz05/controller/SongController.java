@@ -51,4 +51,9 @@ public class SongController {
         }
     }
 
+    @DeleteMapping("delete/{artistName}/{songTitle}")
+    public List<Song> deleteSongByArtistNameAndSongTitle(@PathVariable String artistName, @PathVariable String songTitle){
+        return songService.deleteSong(artistName, songTitle);
+    }
+
 }

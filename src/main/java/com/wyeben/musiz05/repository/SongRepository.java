@@ -14,8 +14,6 @@ public interface SongRepository extends JpaRepository<Song, Integer> {
 
     List<Song> findBySongTitleAndArtistName(String songTitle, String artistName);
 
-    List<Song> findByArtistNameAndSongTitle(String artistName, String songTitle);
-
     @Modifying
     @Query("UPDATE Song s SET s.songTitle = :newValue WHERE s.artistName = " +
             ":artistName AND s.songTitle = :songTitle")
@@ -23,6 +21,7 @@ public interface SongRepository extends JpaRepository<Song, Integer> {
                                         @Param("songTitle") String songTitle,
                                         @Param("newValue") String newValue);
 
+    List<Song> deleteByArtistNameAndSongTitle(String artistName, String songTitle);
 }
 
 
