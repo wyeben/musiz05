@@ -15,10 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("23vibes")
 public class SongController {
-
-    @Autowired
-    SongService songService;
-
+    private final SongService songService;
 
     @Autowired
     public SongController(SongService songService) {

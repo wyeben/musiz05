@@ -4,6 +4,7 @@ import com.wyeben.musiz05.dto.Request;
 import com.wyeben.musiz05.dto.Response;
 import com.wyeben.musiz05.model.Song;
 import com.wyeben.musiz05.repository.SongRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +12,12 @@ import java.util.List;
 
 @Service
 public class SongService implements SongServices{
+    private final SongRepository songRepository;
 
     @Autowired
-    SongRepository songRepository;
+    public SongService(SongRepository songRepository){
+        this.songRepository = songRepository;
+    };
 
 
     public List<Song> getSongs(){
@@ -45,6 +49,7 @@ public class SongService implements SongServices{
         return songRepository.findBySongTitleAndArtistName(songTitle, artistName);
     }
 
+    @Transactional
     public boolean updateSongByArtistNameAndSongTitle(String artistName, String songTitle, String newValue) {
          int updatedCount = songRepository.updateByArtistNameAndSongTitle(artistName, songTitle, newValue);
          return updatedCount > 0;
